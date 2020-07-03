@@ -26,6 +26,7 @@ Global
 		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Debug|x64.ActiveCfg = Debug
 		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Debug|x86.ActiveCfg = Debug
 		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Release|x64.ActiveCfg = Release
+		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Release|x64.Build.0 = Release
 		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Release|x86.ActiveCfg = Release
 		{08FA6E43-612D-40B0-AF87-60D5C9680337}.Release|x86.Build.0 = Release
 	EndGlobalSection

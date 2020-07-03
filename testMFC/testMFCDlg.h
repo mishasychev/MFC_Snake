@@ -1,7 +1,3 @@
-
-// testMFCDlg.h : header file
-//
-
 #pragma once
 
 
@@ -31,7 +27,7 @@ protected:
 	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg
-	void OnTimer(UINT uTime);
+	void OnTimer(UINT_PTR uTime);
 	void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()

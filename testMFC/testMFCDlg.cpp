@@ -150,9 +150,9 @@ void CtestMFCDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 	lpMMI->ptMaxTrackSize.y = 539;
 }
 
-void CtestMFCDlg::OnTimer(UINT uTime)
+void CtestMFCDlg::OnTimer(UINT_PTR uTime)
 {
-	if ((uTime == 1 && !dispatcher.isGameMode) || (uTime == 2 && dispatcher.isGameMode))
+	if ((uTime == 1 && dispatcher.GetMode() != Modes::GAME) || (uTime == 2 && dispatcher.GetMode() == Modes::GAME))
 		RedrawWindow();
 }
 

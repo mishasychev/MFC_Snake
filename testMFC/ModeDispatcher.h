@@ -12,39 +12,54 @@ public:
 	Mode* currentMode = &startMode;
 	CtestMFCDlg* dlg = nullptr;
 
-	bool isGameMode = false;
-
 	void SetMode(Modes value) override
 	{
-
 		switch (value)
 		{
-		case Modes::START:
-		{
-			currentMode = &startMode;
-			return;
+			case Modes::START:
+			{
+				currentMode = &startMode;
+				return;
+			}
+			case Modes::SETTINGS:
+			{
+				currentMode = &settingsMode;
+				return;
+			}
+			case Modes::GAME:
+			{
+				dlg->SetTimer(2, 100 - static_cast<UINT>(settingsMode.speed) * 7, 0);
+				gameMode.Reset();
+				currentMode = &gameMode;
+				return;
+			}
+			case Modes::RESULT:
+			{
+				dlg->KillTimer(2);
+				resultMode.score = gameMode.apple.score;
+				currentMode = &resultMode;
+				return;
+			}
 		}
-		case Modes::SETTINGS:
+	}
+
+	Modes GetMode() override
+	{
+		if (currentMode == &startMode)
 		{
-			currentMode = &settingsMode;
-			return;
+			return Modes::START;
 		}
-		case Modes::GAME:
+		else if (currentMode == &settingsMode)
 		{
-			dlg->SetTimer(2, 100 - settingsMode.speed * 7, 0);
-			isGameMode = true;
-			gameMode.Reset();
-			currentMode = &gameMode;
-			return;
+			return Modes::SETTINGS;
 		}
-		case Modes::RESULT:
+		else if (currentMode == &gameMode)
 		{
-			isGameMode = false;
-			dlg->KillTimer(2);
-			resultMode.score = gameMode.apple.score;
-			currentMode = &resultMode;
-			return;
+			return Modes::GAME;
 		}
+		else
+		{
+			return Modes::RESULT;
 		}
 	}
 private:

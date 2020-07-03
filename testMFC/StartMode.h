@@ -12,32 +12,38 @@ class StartMode : public Mode
 public:
 	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
 	{
-		if (nChar == 87)
+		switch (nChar)
 		{
-			if (ans == 0)
+			case 87:
 			{
-				ans = 2;
+				if (ans == 0)
+				{
+					ans = 2;
+					return;
+				}
+				ans--;
 				return;
 			}
-			ans--;
-		}
-		else if (nChar == 83)
-		{
-			if (ans == 2)
+			case 83:
 			{
-				ans = 0;
+				if (ans == 2)
+				{
+					ans = 0;
+					return;
+				}
+				ans++;
 				return;
 			}
-			ans++;
-		}
-		else if (nChar == 32)
-		{
-			if (ans == 0)
-				dispatcher->SetMode(Modes::GAME);
-			else if (ans == 1)
-				dispatcher->SetMode(Modes::SETTINGS);
-			else
-				exit(0);
+			case 32:
+			{
+				if (ans == 0)
+					dispatcher->SetMode(Modes::GAME);
+				else if (ans == 1)
+					dispatcher->SetMode(Modes::SETTINGS);
+				else
+					exit(0);
+				return;
+			}
 		}
 	}
 
@@ -142,5 +148,5 @@ public:
 		}
 	}
 private:
-	int ans = 0;
+	BYTE ans = 0;
 };

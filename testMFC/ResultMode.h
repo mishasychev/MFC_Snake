@@ -10,43 +10,51 @@ using namespace std;
 class ResultMode : public Mode
 {
 public:
-	int score = 0;
+	WORD score = 0;
 
 	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
 	{
-		if (nChar == 87)
+		switch (nChar)
 		{
-			if (ans == 0)
+			case 87:
 			{
-				ans = 2;
+				if (ans == 0)
+				{
+					ans = 2;
+					return;
+				}
+				ans--;
 				return;
 			}
-			ans--;
-		}
-		else if (nChar == 83)
-		{
-			if (ans == 2)
+			case 83:
 			{
-				ans = 0;
+				if (ans == 2)
+				{
+					ans = 0;
+					return;
+				}
+				ans++;
 				return;
 			}
-			ans++;
+			case 32:
+			{
+				if (ans == 0)
+					dispatcher->SetMode(Modes::GAME);
+				else if (ans == 1)
+					dispatcher->SetMode(Modes::SETTINGS);
+				else
+					exit(0);
+				return;
+			}
 		}
-		else if (nChar == 32)
-		{
-			if (ans == 0)
-				dispatcher->SetMode(Modes::GAME);
-			else if (ans == 1)
-				dispatcher->SetMode(Modes::SETTINGS);
-			else
-				exit(0);
-		}
+		
 	}
 
 	void Draw(IModeDispatcher* dispatcher, CClientDC* dc) override
 	{
 		COLORREF color;
-		int score = this->score;
+
+		WORD score = this->score;
 
 		//TEXT:score
 		vector<vector<bool>> scoreText =
@@ -169,7 +177,7 @@ public:
 			{0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}
 		};
 
-		vector<int> scoreV;
+		vector<WORD> scoreV;
 		while (score >= 10)
 		{
 			scoreV.push_back(score % 10);
@@ -214,5 +222,5 @@ public:
 		}
 	}
 private:
-	int ans = 0;
+	BYTE ans = 0;
 };

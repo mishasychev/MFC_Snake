@@ -1,24 +1,23 @@
 #pragma once
 
+#include "constants.h"
+
 #include <cstdlib>
 #include <ctime>
 
 class Apple
 {
-private:
-	const int CELL = 20;
 public:
-	int x, y, score = -1;
+	SHORT x, y, score = -1;
 
 	Apple()
 	{
+		srand(static_cast<UINT>(time(nullptr)));
 		NewLocation();
 	}
 
 	void NewLocation()
 	{
-		srand(time(0));
-
 		x = (rand() % 40) * CELL;
 		y = (rand() % 25) * CELL;
 

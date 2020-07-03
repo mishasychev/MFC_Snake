@@ -14,26 +14,26 @@ public:
 	{
 		switch (nChar)
 		{
-		case 87:
-		{
-			direction = Directions::UP;
-			return;
-		}
-		case 83:
-		{
-			direction = Directions::DOWN;
-			return;
-		}
-		case 65:
-		{
-			direction = Directions::LEFT;
-			return;
-		}
-		case 68:
-		{
-			direction = Directions::RIGHT;
-			return;
-		}
+			case 87:
+			{
+				direction = Directions::UP;
+				return;
+			}
+			case 83:
+			{
+				direction = Directions::DOWN;
+				return;
+			}
+			case 65:
+			{
+				direction = Directions::LEFT;
+				return;
+			}
+			case 68:
+			{
+				direction = Directions::RIGHT;
+				return;
+			}
 		}
 	}
 

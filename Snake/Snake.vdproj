@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3A2DACDFFD9B4E67A93E18BAFFFF7A08"
+        "MsmKey" = "8:_1876AE0E00B4418BB9E8C2DF5519B57D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_947B078A64584900993621E4E6440A8E"
+        "MsmKey" = "8:_DE6B2D4148534BBFAA837C0B85AC1526"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -112,10 +112,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_947B078A64584900993621E4E6440A8E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE6B2D4148534BBFAA837C0B85AC1526"
             {
-            "SourcePath" = "8:D:\\Downloads\\snakeICO.ico"
-            "TargetName" = "8:snakeICO.ico"
+            "SourcePath" = "8:..\\testMFC\\res\\testMFC.ico"
+            "TargetName" = "8:testMFC.ico"
             "Tag" = "8:"
             "Folder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
             "Condition" = "8:"
@@ -140,7 +140,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_4A507A3AC8A94F56888F99C0DE4890BD"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -199,15 +199,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Snake"
-        "ProductCode" = "8:{D823008D-066D-4C19-A59F-5B68893324BF}"
-        "PackageCode" = "8:{3299B22D-F006-41EA-865C-AD1B28A44BBB}"
+        "ProductCode" = "8:{7501F341-AF3D-4A7B-B7A5-C8965768B4BF}"
+        "PackageCode" = "8:{4CBA9FAA-3474-4E61-9E3E-76F1F49DFC6B}"
         "UpgradeCode" = "8:{31D81420-AED1-4065-8544-5A7D2F2298AB}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.1.2"
+        "ProductVersion" = "8:2.3"
         "Manufacturer" = "8:Misha Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://vk.com/lucikbog"
@@ -221,7 +221,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -320,7 +320,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_92B1F8F1A42A40C7B5F6E48A405E06D5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9D830E3E1FE6456382C5BC29FFC78A16"
             {
             "Name" = "8:Snake"
             "Arguments" = "8:"
@@ -328,10 +328,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3A2DACDFFD9B4E67A93E18BAFFFF7A08"
+            "Target" = "8:_1876AE0E00B4418BB9E8C2DF5519B57D"
             "Folder" = "8:_A425C7C3725F4206BFE0755826E8DF24"
             "WorkingFolder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
-            "Icon" = "8:_947B078A64584900993621E4E6440A8E"
+            "Icon" = "8:_DE6B2D4148534BBFAA837C0B85AC1526"
             "Feature" = "8:"
             }
         }
@@ -733,9 +733,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3A2DACDFFD9B4E67A93E18BAFFFF7A08"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1876AE0E00B4418BB9E8C2DF5519B57D"
             {
-            "SourcePath" = "8:..\\Release\\testMFC.exe"
+            "SourcePath" = "8:..\\x64\\Release\\testMFC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
@@ -753,7 +753,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|x64"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{9A5A3771-9D09-4E46-ADBC-85C46E019833}"
             "ShowKeyOutput" = "11:TRUE"

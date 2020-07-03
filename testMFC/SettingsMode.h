@@ -9,23 +9,29 @@ using namespace std;
 class SettingsMode : public Mode
 {
 public:
-	int speed = 0;
+	BYTE speed = 0;
 
 	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
 	{
-		if (nChar == 68)
+		switch (nChar)
 		{
-			if (speed < 5)
-				speed++;
-		}
-		else if (nChar == 65)
-		{
-			if (speed > 0)
-				speed--;
-		}
-		else if (nChar == 32)
-		{
-			dispatcher->SetMode(Modes::START);
+			case 68:
+			{
+				if (speed < 5)
+					speed++;
+				return;
+			}
+			case 65:
+			{
+				if (speed > 0)
+					speed--;
+				return;
+			}
+			case 32:
+			{
+				dispatcher->SetMode(Modes::START);
+				return;
+			}
 		}
 	}
 
