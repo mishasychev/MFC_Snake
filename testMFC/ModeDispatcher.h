@@ -28,7 +28,7 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg->SetTimer(2, 100 - static_cast<UINT>(settingsMode.speed) * 7, 0);
+				dlg->SetTimer(2, 100 - static_cast<UINT32>(settingsMode.speed) * 7, 0);
 				gameMode.Reset();
 				currentMode = &gameMode;
 				return;
@@ -36,7 +36,7 @@ public:
 			case Modes::RESULT:
 			{
 				dlg->KillTimer(2);
-				resultMode.score = gameMode.apple.score;
+				resultMode.score = gameMode.apple.GetScore();
 				currentMode = &resultMode;
 				return;
 			}

@@ -86,7 +86,7 @@ public:
 	}
 
 private:
-	deque<pair<WORD, WORD>> sn;
+	deque<pair<UINT16, UINT16>> sn;
 	Directions lastDirection = Directions::UP;
 
 	bool WrongDirection(Directions& d)
@@ -104,7 +104,7 @@ private:
 
 	bool CheckApple(Apple* apple)
 	{
-		if (apple->x == sn.back().first && apple->y == sn.back().second)
+		if (apple->GetLocation() == sn.back())
 		{
 			apple->NewLocation();
 			return true;
@@ -113,7 +113,7 @@ private:
 	}
 	void CheckSnake(IModeDispatcher* dispatcher)
 	{
-		for (size_t i = 0; i < sn.size() - 1; i++)
+		for (UINT64 i = 0; i < sn.size() - 1; i++)
 		{
 			if (sn[i].first == sn.back().first && sn[i].second == sn.back().second)
 			{
