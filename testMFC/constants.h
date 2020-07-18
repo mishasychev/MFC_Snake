@@ -11,7 +11,6 @@ typedef unsigned int mUINT32;
 typedef unsigned long long mUINT64;
 
 
-
 constexpr mUINT8 CELL = 20;
 
 enum class Modes {START, SETTINGS, GAME, RESULT};
@@ -46,7 +45,7 @@ public:
 		return y_;
 	}
 
-	inline constexpr bool operator==(const Location& anotherOne) const
+	__inline constexpr bool operator==(const Location& anotherOne) const
 	{
 		if (x_ == anotherOne.GetX() && y_ == anotherOne.GetY())
 		{

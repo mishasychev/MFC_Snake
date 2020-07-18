@@ -10,7 +10,7 @@ class Snake
 public:
 	void Movement(IModeDispatcher* dispatcher, Directions& d, Apple* apple)
 	{
-		if (WrongDirection(d))
+		if (WrongDirection_(d))
 		{
 			d = lastDirection;
 		}
@@ -50,11 +50,11 @@ public:
 			}
 		}
 
-		if (!CheckApple(apple))
+		if (!CheckApple_(apple))
 		{
 			sn.pop_front();
 		}
-		CheckSnake(dispatcher);
+		CheckSnake_(dispatcher);
 
 		lastDirection = d;
 	}
@@ -72,7 +72,7 @@ public:
 		}
 	}
 
-	void Reset()
+	inline void Reset()
 	{
 		lastDirection = Directions::UP;
 		sn.clear();
@@ -83,7 +83,7 @@ private:
 	deque<Location> sn;
 	Directions lastDirection = Directions::UP;
 
-	bool WrongDirection(Directions& d)
+	bool WrongDirection_(Directions& d)
 	{
 		if (d == Directions::UP && lastDirection == Directions::DOWN)
 			return true;
@@ -96,7 +96,7 @@ private:
 		return false;
 	}
 
-	bool CheckApple(Apple* apple)
+	bool CheckApple_(Apple* apple)
 	{
 		if (apple->GetLocation() == sn.back())
 		{
@@ -105,7 +105,7 @@ private:
 		}
 		return false;
 	}
-	void CheckSnake(IModeDispatcher* dispatcher)
+	void CheckSnake_(IModeDispatcher* dispatcher)
 	{
 		for (mUINT64 i = 0; i < sn.size() - 1; i++)
 		{
