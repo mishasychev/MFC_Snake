@@ -148,5 +148,5 @@ public:
 		}
 	}
 private:
-	BYTE ans = 0;
+	mUINT8 ans = 0;
 };

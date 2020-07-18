@@ -28,7 +28,7 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg->SetTimer(2, 100 - static_cast<UINT32>(settingsMode.speed) * 7, 0);
+				dlg->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.speed) * 7, 0);
 				gameMode.Reset();
 				currentMode = &gameMode;
 				return;

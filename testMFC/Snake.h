@@ -3,9 +3,6 @@
 #include <deque>
 #include "IModeDispatcher.h"
 
-#include <cstdlib>
-#include <ctime>
-
 using namespace std;
 
 class Snake
@@ -23,32 +20,32 @@ public:
 		{
 			case Directions::UP:
 			{
-				if (begin->second == 0)
+				if (begin->GetY() == 0)
 				{
-					sn.push_back(make_pair(begin->first, 24 * CELL));
+					sn.push_back(Location(begin->GetX(), 24 * CELL));
 					break;
 				}
-				sn.push_back(make_pair(begin->first, begin->second - CELL));
+				sn.push_back(Location(begin->GetX(), begin->GetY() - CELL));
 				break;
 			}
 			case Directions::DOWN:
 			{
-				sn.push_back(make_pair(begin->first, (begin->second + CELL) % 500));
+				sn.push_back(Location(begin->GetX(), (begin->GetY() + CELL) % 500));
 				break;
 			}
 			case Directions::LEFT:
 			{
-				if (begin->first == 0)
+				if (begin->GetX() == 0)
 				{
-					sn.push_back(make_pair(39 * CELL, begin->second));
+					sn.push_back(Location(39 * CELL, begin->GetY()));
 					break;
 				}
-				sn.push_back(make_pair(begin->first - CELL, begin->second));
+				sn.push_back(Location(begin->GetX() - CELL, begin->GetY()));
 				break;
 			}
 			case Directions::RIGHT:
 			{
-				sn.push_back(make_pair((begin->first + CELL) % 800, begin->second));
+				sn.push_back(Location((begin->GetX() + CELL) % 800, begin->GetY()));
 				break;
 			}
 		}
@@ -64,14 +61,11 @@ public:
 
 	void Draw(CClientDC* dc)
 	{
-		/*COLORREF col = RGB(51, 204, 51);*/
-		COLORREF col;
-		srand(/*static_cast<UINT>(time(nullptr))*/rand());
+		COLORREF col = RGB(51, 204, 51);
 
 		for(const auto& i : sn)
 		{
-			col = RGB(rand() % 256, rand() % 256, rand() % 256);
-			CPoint p(i.first, i.second);
+			CPoint p(i.GetX(), i.GetY());
 			CSize s(CELL, CELL);
 			CRect rect(p, s);
 			dc->FillRect(&rect, &CBrush(col));
@@ -82,11 +76,11 @@ public:
 	{
 		lastDirection = Directions::UP;
 		sn.clear();
-		sn.push_back(make_pair(19 * CELL, 13 * CELL));
+		sn.push_back(Location(19 * CELL, 13 * CELL));
 	}
 
 private:
-	deque<pair<UINT16, UINT16>> sn;
+	deque<Location> sn;
 	Directions lastDirection = Directions::UP;
 
 	bool WrongDirection(Directions& d)
@@ -113,9 +107,9 @@ private:
 	}
 	void CheckSnake(IModeDispatcher* dispatcher)
 	{
-		for (UINT64 i = 0; i < sn.size() - 1; i++)
+		for (mUINT64 i = 0; i < sn.size() - 1; i++)
 		{
-			if (sn[i].first == sn.back().first && sn[i].second == sn.back().second)
+			if (sn[i] == sn.back())
 			{
 				dispatcher->SetMode(Modes::RESULT);
 				return;

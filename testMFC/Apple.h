@@ -9,22 +9,22 @@ class Apple
 {
 public:
 	Apple()
+		: location_(0, 0)
 	{
-		srand(static_cast<UINT32>(time(nullptr)));
+		srand(static_cast<mUINT32>(time(nullptr)));
 		NewLocation();
 	}
 
-	void NewLocation()
+	inline void NewLocation()
 	{
-		x_ = (rand() % 40) * CELL;
-		y_ = (rand() % 25) * CELL;
-
+		location_.SetX((rand() % 40) * CELL);
+		location_.SetY((rand() % 25) * CELL);
 		score_++;
 	}
 
-	void Draw(CClientDC* dc)
+	inline void Draw(CClientDC* dc)
 	{
-		CRect cellRect(CPoint(x_, y_), CSize(CELL, CELL));
+		CRect cellRect(CPoint(location_.GetX(), location_.GetY()), CSize(CELL, CELL));
 		COLORREF col = RGB(255, 51, 0);
 		dc->FillRect(&cellRect, &CBrush(col));
 	}
@@ -35,18 +35,17 @@ public:
 		NewLocation();
 	}
 
-	__forceinline std::pair<UINT16, UINT16> GetLocation()
+	__forceinline Location GetLocation()
 	{
-		return std::make_pair(x_, y_);
+		return location_;
 	}
 
-	__forceinline INT16 GetScore()
+	__forceinline constexpr mINT16 GetScore()
 	{
 		return score_;
 	}
 
 private:
-	UINT16 x_;
-	UINT16 y_;
-	INT16 score_ = -1;
+	Location location_;
+	mINT16 score_ = -1;
 };

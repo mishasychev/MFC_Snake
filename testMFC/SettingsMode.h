@@ -9,7 +9,7 @@ using namespace std;
 class SettingsMode : public Mode
 {
 public:
-	BYTE speed = 0;
+	mUINT8 speed = 0;
 
 	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
 	{
