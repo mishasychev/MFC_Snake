@@ -59,7 +59,7 @@ public:
 		lastDirection = d;
 	}
 
-	void Draw(CClientDC* dc)
+	void Draw(CDC* dc)
 	{
 		COLORREF col = RGB(51, 204, 51);
 
@@ -72,7 +72,7 @@ public:
 		}
 	}
 
-	inline void Reset()
+	__inline void Reset()
 	{
 		lastDirection = Directions::UP;
 		sn.clear();
@@ -83,7 +83,7 @@ private:
 	deque<Location> sn;
 	Directions lastDirection = Directions::UP;
 
-	bool WrongDirection_(Directions& d)
+	constexpr bool WrongDirection_(Directions& d)
 	{
 		if (d == Directions::UP && lastDirection == Directions::DOWN)
 			return true;
@@ -96,7 +96,7 @@ private:
 		return false;
 	}
 
-	bool CheckApple_(Apple* apple)
+	constexpr bool CheckApple_(Apple* apple)
 	{
 		if (apple->GetLocation() == sn.back())
 		{

@@ -47,7 +47,7 @@ public:
 		}
 	}
 
-	void Draw(IModeDispatcher* dispatcher, CClientDC* dc) override
+	void Draw(IModeDispatcher* dispatcher, CDC* dc) override
 	{
 		COLORREF color;
 		int cell;

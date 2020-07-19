@@ -37,13 +37,13 @@ public:
 		}
 	}
 
-	void Draw(IModeDispatcher* dispatcher, CClientDC* dc) override
+	void Draw(IModeDispatcher* dispatcher, CDC* dc) override
 	{
 		snake.Draw(dc);
 		apple.Draw(dc);
 		snake.Movement(dispatcher, direction, &apple);
 	}
-	void Reset()
+	__inline void Reset()
 	{
 		apple.Reset();
 		snake.Reset();

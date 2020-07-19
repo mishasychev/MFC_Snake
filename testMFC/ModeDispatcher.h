@@ -10,7 +10,11 @@ class ModeDispatcher : public IModeDispatcher
 {
 public:
 	Mode* currentMode = &startMode;
-	CtestMFCDlg* dlg = nullptr;
+
+	ModeDispatcher(CtestMFCDlg* newDlg)
+		: dlg_(newDlg)
+	{
+	}
 
 	void SetMode(Modes value) override
 	{
@@ -28,14 +32,14 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.speed) * 7, 0);
+				dlg_->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.speed) * 7, 0);
 				gameMode.Reset();
 				currentMode = &gameMode;
 				return;
 			}
 			case Modes::RESULT:
 			{
-				dlg->KillTimer(2);
+				dlg_->KillTimer(2);
 				resultMode.score = gameMode.apple.GetScore();
 				currentMode = &resultMode;
 				return;
@@ -67,4 +71,6 @@ private:
 	SettingsMode settingsMode;
 	GameMode gameMode;
 	ResultMode resultMode;
+
+	CtestMFCDlg* dlg_;
 };

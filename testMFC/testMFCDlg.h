@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 
 // CtestMFCDlg dialog
 class CtestMFCDlg : public CDialogEx
@@ -28,6 +29,7 @@ protected:
 	void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg
 	void OnTimer(UINT_PTR uTime);
+	BOOL OnEraseBkgnd(CDC* pDC);
 	void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()

@@ -15,14 +15,14 @@ public:
 		NewLocation();
 	}
 
-	inline void NewLocation()
+	__inline void NewLocation()
 	{
 		location_.SetX((rand() % 40) * CELL);
 		location_.SetY((rand() % 25) * CELL);
 		score_++;
 	}
 
-	inline void Draw(CClientDC* dc)
+	__inline void Draw(CDC* dc)
 	{
 		CRect cellRect(CPoint(location_.GetX(), location_.GetY()), CSize(CELL, CELL));
 		COLORREF col = RGB(255, 51, 0);

@@ -16,6 +16,8 @@ constexpr mUINT8 CELL = 20;
 enum class Modes {START, SETTINGS, GAME, RESULT};
 enum class Directions {UP, DOWN, LEFT, RIGHT};
 
+
+
 class Location
 {
 public:

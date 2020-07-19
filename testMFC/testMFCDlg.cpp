@@ -3,6 +3,7 @@
 //
 
 #include "pch.h"
+
 #include "framework.h"
 #include "testMFC.h"
 #include "testMFCDlg.h"
@@ -20,6 +21,8 @@
 #endif
 
 // CAboutDlg dialog used for App About
+
+std::unique_ptr<ModeDispatcher> dispatcher_;
 
 class CAboutDlg : public CDialogEx
 {
@@ -54,8 +57,6 @@ END_MESSAGE_MAP()
 
 // CtestMFCDlg dialog
 
-ModeDispatcher dispatcher;
-
 CtestMFCDlg::CtestMFCDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_TESTMFC_DIALOG, pParent)
 {
@@ -70,6 +71,7 @@ void CtestMFCDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CtestMFCDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_TIMER()
+	ON_WM_ERASEBKGND()
 	ON_WM_GETMINMAXINFO()
 	ON_WM_PAINT()
 	ON_WM_KEYDOWN()
@@ -110,7 +112,7 @@ BOOL CtestMFCDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
-	dispatcher.dlg = this;
+	dispatcher_ = std::unique_ptr<ModeDispatcher>(new ModeDispatcher(this));
 
 	SetTimer(1, 150, 0);
 
@@ -138,7 +140,7 @@ void CtestMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 
 void CtestMFCDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	dispatcher.currentMode->OnKeyDown(&dispatcher, nChar);
+	dispatcher_->currentMode->OnKeyDown(dispatcher_.get(), nChar);
 }
 
 void CtestMFCDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
@@ -152,8 +154,13 @@ void CtestMFCDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 
 void CtestMFCDlg::OnTimer(UINT_PTR uTime)
 {
-	if ((uTime == 1 && dispatcher.GetMode() != Modes::GAME) || (uTime == 2 && dispatcher.GetMode() == Modes::GAME))
+	if ((uTime == 1 && dispatcher_->GetMode() != Modes::GAME) || (uTime == 2 && dispatcher_->GetMode() == Modes::GAME))
 		RedrawWindow();
+}
+
+BOOL CtestMFCDlg::OnEraseBkgnd(CDC* pDC)
+{
+	return static_cast<BOOL>(true);
 }
 
 void CtestMFCDlg::OnPaint()
@@ -179,12 +186,40 @@ void CtestMFCDlg::OnPaint()
 	{
 		CDialogEx::OnPaint();
 
-		CClientDC dc(this);
+		
 		CRect rectWindow;
 		GetClientRect(&rectWindow);
-		dc.FillRect(&rectWindow, &CBrush(COLORREF(0x00000000)));
+		GetDC()->FillRect(&rectWindow, &CBrush(COLORREF(0x00000000)));
 
-		dispatcher.currentMode->Draw(&dispatcher, &dc);
+
+
+
+		CDC* dc = GetDC();
+
+		CDC dc_mem;
+		dc_mem.CreateCompatibleDC(dc);
+
+		CRgn rgn;
+		rgn.CreateRectRgn(0, 0, rectWindow.Width(), rectWindow.Height());
+		dc->SelectClipRgn(&rgn);
+
+		CBitmap bitmap;
+		bitmap.CreateCompatibleBitmap(dc, rectWindow.Width(), rectWindow.Height());
+		CBitmap* pOldBit = dc_mem.SelectObject(&bitmap);
+
+		/*---------------------------------------------------------------------------------*/
+
+		dispatcher_->currentMode->Draw(dispatcher_.get(), &dc_mem);
+
+		/*---------------------------------------------------------------------------------*/
+
+		dc_mem.SetStretchBltMode(HALFTONE);
+		dc->BitBlt(0, 0, rectWindow.Width(), rectWindow.Height(), &dc_mem, 0, 0, SRCCOPY);
+
+
+		dc->SelectClipRgn(nullptr);
+		dc_mem.DeleteDC();
+		bitmap.DeleteObject();
 	}
 }
 
