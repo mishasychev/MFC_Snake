@@ -111,8 +111,7 @@ BOOL CtestMFCDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
-	dispatcher_ = std::unique_ptr<ModeDispatcher>(new ModeDispatcher(this));
+	dispatcher_ = make_unique<ModeDispatcher>(this);
 
 	SetTimer(1, 150, 0);
 
@@ -186,18 +185,13 @@ void CtestMFCDlg::OnPaint()
 	{
 		CDialogEx::OnPaint();
 
-		
-		CRect rectWindow;
-		GetClientRect(&rectWindow);
-		GetDC()->FillRect(&rectWindow, &CBrush(COLORREF(0x00000000)));
-
-
-
-
 		CDC* dc = GetDC();
 
 		CDC dc_mem;
 		dc_mem.CreateCompatibleDC(dc);
+
+		CRect rectWindow;
+		GetClientRect(&rectWindow);
 
 		CRgn rgn;
 		rgn.CreateRectRgn(0, 0, rectWindow.Width(), rectWindow.Height());
