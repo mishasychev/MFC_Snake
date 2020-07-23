@@ -16,9 +16,9 @@ public:
 	{
 	}
 
-	void SetMode(Modes value) override
+	void SetMode(Modes newMode) override
 	{
-		switch (value)
+		switch (newMode)
 		{
 			case Modes::START:
 			{
@@ -32,7 +32,7 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg_->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.speed) * 7, 0);
+				dlg_->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.GetSpeed()) * 7, 0);
 				gameMode.Reset();
 				currentMode = &gameMode;
 				return;
@@ -40,7 +40,7 @@ public:
 			case Modes::RESULT:
 			{
 				dlg_->KillTimer(2);
-				resultMode.score = gameMode.apple.GetScore();
+				resultMode.score = gameMode.GetApple()->GetScore();
 				currentMode = &resultMode;
 				return;
 			}

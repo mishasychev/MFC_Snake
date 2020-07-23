@@ -49,11 +49,7 @@ public:
 
 	__inline constexpr bool operator==(const Location& anotherOne) const
 	{
-		if (x_ == anotherOne.GetX() && y_ == anotherOne.GetY())
-		{
-			return true;
-		}
-		return false;
+		return (x_ == anotherOne.GetX() && y_ == anotherOne.GetY() ? true : false);
 	}
 
 private:

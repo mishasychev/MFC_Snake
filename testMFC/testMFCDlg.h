@@ -25,12 +25,12 @@ protected:
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	__forceinline void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg
-	void OnTimer(UINT_PTR uTime);
-	BOOL OnEraseBkgnd(CDC* pDC);
+	__inline void OnTimer(UINT_PTR uTime);
+	__forceinline BOOL OnEraseBkgnd(CDC* pDC);
 	void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg __forceinline HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 };

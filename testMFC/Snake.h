@@ -85,15 +85,10 @@ private:
 
 	constexpr bool WrongDirection_(Directions& d)
 	{
-		if (d == Directions::UP && lastDirection == Directions::DOWN)
-			return true;
-		if (d == Directions::DOWN && lastDirection == Directions::UP)
-			return true;
-		if (d == Directions::LEFT && lastDirection == Directions::RIGHT)
-			return true;
-		if (d == Directions::RIGHT && lastDirection == Directions::LEFT)
-			return true;
-		return false;
+		return (d == Directions::UP && lastDirection == Directions::DOWN
+			    || d == Directions::DOWN && lastDirection == Directions::UP
+			    || d == Directions::LEFT && lastDirection == Directions::RIGHT
+			    || d == Directions::RIGHT && lastDirection == Directions::LEFT ? true : false);
 	}
 
 	constexpr bool CheckApple_(Apple* apple)

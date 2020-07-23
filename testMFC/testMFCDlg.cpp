@@ -11,9 +11,6 @@
 #include "Apple.h"
 #include "Snake.h"
 #include "ModeDispatcher.h"
-#include "StartMode.h"
-#include "GameMode.h"
-#include "ResultMode.h"
 #include "constants.h"
 
 #ifdef _DEBUG
@@ -137,27 +134,27 @@ void CtestMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 
 
 
-void CtestMFCDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+__forceinline void CtestMFCDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	dispatcher_->currentMode->OnKeyDown(dispatcher_.get(), nChar);
 }
 
 void CtestMFCDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 {
-	lpMMI->ptMinTrackSize.x = 816;
-	lpMMI->ptMinTrackSize.y = 539;
+	lpMMI->ptMinTrackSize.x = static_cast<LONG>(816);
+	lpMMI->ptMinTrackSize.y = static_cast<LONG>(539);
 
-	lpMMI->ptMaxTrackSize.x = 816;
-	lpMMI->ptMaxTrackSize.y = 539;
+	lpMMI->ptMaxTrackSize.x = static_cast<LONG>(816);
+	lpMMI->ptMaxTrackSize.y = static_cast<LONG>(539);
 }
 
-void CtestMFCDlg::OnTimer(UINT_PTR uTime)
+__inline void CtestMFCDlg::OnTimer(UINT_PTR uTime)
 {
 	if ((uTime == 1 && dispatcher_->GetMode() != Modes::GAME) || (uTime == 2 && dispatcher_->GetMode() == Modes::GAME))
 		RedrawWindow();
 }
 
-BOOL CtestMFCDlg::OnEraseBkgnd(CDC* pDC)
+__forceinline BOOL CtestMFCDlg::OnEraseBkgnd(CDC* pDC)
 {
 	return static_cast<BOOL>(true);
 }
@@ -220,7 +217,7 @@ void CtestMFCDlg::OnPaint()
 
 // The system calls this function to obtain the cursor to display while the user drags
 //  the minimized window.
-HCURSOR CtestMFCDlg::OnQueryDragIcon()
+__forceinline HCURSOR CtestMFCDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
