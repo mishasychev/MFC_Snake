@@ -8,62 +8,69 @@ using namespace std;
 class Snake
 {
 public:
+	Snake()
+		: lastDirection_(Directions::UP)
+		, snake_(1, Location(19 * CELL, 13 * CELL))
+		, score_(0)
+	{
+	}
+
 	void Movement(IModeDispatcher* dispatcher, Directions& d, Apple* apple)
 	{
 		if (WrongDirection_(d))
 		{
-			d = lastDirection;
+			d = lastDirection_;
 		}
 
-		auto* begin = &sn.back();
+		auto* begin = &snake_.back();
 		switch (d)
 		{
 			case Directions::UP:
 			{
 				if (begin->GetY() == 0)
 				{
-					sn.push_back(Location(begin->GetX(), 24 * CELL));
+					snake_.push_back(Location(begin->GetX(), 24 * CELL));
 					break;
 				}
-				sn.push_back(Location(begin->GetX(), begin->GetY() - CELL));
+				snake_.push_back(Location(begin->GetX(), begin->GetY() - CELL));
 				break;
 			}
 			case Directions::DOWN:
 			{
-				sn.push_back(Location(begin->GetX(), (begin->GetY() + CELL) % 500));
+				snake_.push_back(Location(begin->GetX(), (begin->GetY() + CELL) % 500));
 				break;
 			}
 			case Directions::LEFT:
 			{
 				if (begin->GetX() == 0)
 				{
-					sn.push_back(Location(39 * CELL, begin->GetY()));
+					snake_.push_back(Location(39 * CELL, begin->GetY()));
 					break;
 				}
-				sn.push_back(Location(begin->GetX() - CELL, begin->GetY()));
+				snake_.push_back(Location(begin->GetX() - CELL, begin->GetY()));
 				break;
 			}
 			case Directions::RIGHT:
 			{
-				sn.push_back(Location((begin->GetX() + CELL) % 800, begin->GetY()));
+				snake_.push_back(Location((begin->GetX() + CELL) % 800, begin->GetY()));
 				break;
 			}
 		}
 
 		if (!CheckApple_(apple))
 		{
-			sn.pop_front();
+			snake_.pop_front();
 		}
 		CheckSnake_(dispatcher);
 
-		lastDirection = d;
+		lastDirection_ = d;
 	}
 
 	void Draw(CDC* dc)
 	{
 		COLORREF col = RGB(51, 204, 51);
 
-		for(const auto& i : sn)
+		for(const auto& i : snake_)
 		{
 			CPoint p(i.GetX(), i.GetY());
 			CSize s(CELL, CELL);
@@ -72,39 +79,39 @@ public:
 		}
 	}
 
-	__inline void Reset()
+	__forceinline constexpr mUINT16 GetScore() const
 	{
-		lastDirection = Directions::UP;
-		sn.clear();
-		sn.push_back(Location(19 * CELL, 13 * CELL));
+		return score_;
 	}
 
 private:
-	deque<Location> sn;
-	Directions lastDirection = Directions::UP;
+	deque<Location> snake_;
+	Directions lastDirection_;
+	mUINT16 score_;
 
-	constexpr bool WrongDirection_(Directions& d)
+	constexpr bool WrongDirection_(const Directions& d)
 	{
-		return (d == Directions::UP && lastDirection == Directions::DOWN
-			    || d == Directions::DOWN && lastDirection == Directions::UP
-			    || d == Directions::LEFT && lastDirection == Directions::RIGHT
-			    || d == Directions::RIGHT && lastDirection == Directions::LEFT ? true : false);
+		return d == Directions::UP && lastDirection_ == Directions::DOWN
+			   || d == Directions::DOWN && lastDirection_ == Directions::UP
+			   || d == Directions::LEFT && lastDirection_ == Directions::RIGHT
+			   || d == Directions::RIGHT && lastDirection_ == Directions::LEFT ? true : false;
 	}
 
 	constexpr bool CheckApple_(Apple* apple)
 	{
-		if (apple->GetLocation() == sn.back())
+		if (apple->GetLocation() == snake_.back())
 		{
 			apple->NewLocation();
+			score_++;
 			return true;
 		}
 		return false;
 	}
 	void CheckSnake_(IModeDispatcher* dispatcher)
 	{
-		for (mUINT64 i = 0; i < sn.size() - 1; i++)
+		for (mUINT64 i = 0; i < snake_.size() - 1; i++)
 		{
-			if (sn[i] == sn.back())
+			if (snake_[i] == snake_.back())
 			{
 				dispatcher->SetMode(Modes::RESULT);
 				return;

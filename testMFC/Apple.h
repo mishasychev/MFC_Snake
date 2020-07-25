@@ -19,7 +19,6 @@ public:
 	{
 		location_.SetX((rand() % 40) * CELL);
 		location_.SetY((rand() % 25) * CELL);
-		score_++;
 	}
 
 	__inline void Draw(CDC* dc)
@@ -29,23 +28,11 @@ public:
 		dc->FillRect(&cellRect, &CBrush(col));
 	}
 
-	__forceinline void Reset()
-	{
-		score_ = -1;
-		NewLocation();
-	}
-
-	__forceinline Location GetLocation()
+	__forceinline const Location GetLocation() const
 	{
 		return location_;
 	}
 
-	__forceinline constexpr mINT16 GetScore()
-	{
-		return score_;
-	}
-
 private:
 	Location location_;
-	mINT16 score_ = -1;
 };

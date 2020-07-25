@@ -10,7 +10,7 @@ using namespace std;
 class StartMode : public Mode
 {
 public:
-	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
+	void OnKeyDown(IModeDispatcher* dispatcher, const UINT& nChar) override
 	{
 		switch (nChar)
 		{

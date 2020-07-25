@@ -5,6 +5,6 @@
 class IModeDispatcher
 {
 public:
-	virtual void SetMode(Modes value) = 0;
-	virtual Modes GetMode() = 0;
+	virtual void SetMode(const Modes& value) = 0;
+	virtual const Modes GetMode() const = 0;
 };

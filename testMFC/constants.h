@@ -21,33 +21,33 @@ enum class Directions {UP, DOWN, LEFT, RIGHT};
 class Location
 {
 public:
-	Location(mINT16 newX, mINT16 newY)
+	Location(const mINT16& newX, const mINT16& newY)
 		: x_(newX)
 		, y_(newY)
 	{
 	}
 
-	__forceinline void SetX(mINT16 newX)
+	__forceinline void SetX(const mINT16& newX)
 	{
 		x_ = newX;
 	}
 
-	__forceinline void SetY(mINT16 newY)
+	__forceinline void SetY(const mINT16& newY)
 	{
 		y_ = newY;
 	}
 
-	__forceinline constexpr mINT16 GetX() const
+	__forceinline constexpr const mINT16 GetX() const
 	{
 		return x_;
 	}
 
-	__forceinline constexpr mINT16 GetY() const
+	__forceinline constexpr const mINT16 GetY() const
 	{
 		return y_;
 	}
 
-	__inline constexpr bool operator==(const Location& anotherOne) const
+	__inline constexpr const bool operator==(const Location& anotherOne) const
 	{
 		return (x_ == anotherOne.GetX() && y_ == anotherOne.GetY() ? true : false);
 	}

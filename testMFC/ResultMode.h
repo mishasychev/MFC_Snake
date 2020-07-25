@@ -12,7 +12,7 @@ class ResultMode : public Mode
 public:
 	mUINT16 score = 0;
 
-	void OnKeyDown(IModeDispatcher* dispatcher, UINT& nChar) override
+	void OnKeyDown(IModeDispatcher* dispatcher, const UINT& nChar) override
 	{
 		switch (nChar)
 		{
