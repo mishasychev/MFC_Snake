@@ -10,7 +10,7 @@ class Snake
 public:
 	Snake()
 		: lastDirection_(Directions::UP)
-		, snake_(1, Location(19 * CELL, 13 * CELL))
+		, snake_{ Point(19 * CELL, 13 * CELL) }
 		, score_(0)
 	{
 	}
@@ -29,30 +29,30 @@ public:
 			{
 				if (begin->GetY() == 0)
 				{
-					snake_.push_back(Location(begin->GetX(), 24 * CELL));
+					snake_.push_back(Point(begin->GetX(), 24 * CELL));
 					break;
 				}
-				snake_.push_back(Location(begin->GetX(), begin->GetY() - CELL));
+				snake_.push_back(Point(begin->GetX(), begin->GetY() - CELL));
 				break;
 			}
 			case Directions::DOWN:
 			{
-				snake_.push_back(Location(begin->GetX(), (begin->GetY() + CELL) % 500));
+				snake_.push_back(Point(begin->GetX(), (begin->GetY() + CELL) % 500));
 				break;
 			}
 			case Directions::LEFT:
 			{
 				if (begin->GetX() == 0)
 				{
-					snake_.push_back(Location(39 * CELL, begin->GetY()));
+					snake_.push_back(Point(39 * CELL, begin->GetY()));
 					break;
 				}
-				snake_.push_back(Location(begin->GetX() - CELL, begin->GetY()));
+				snake_.push_back(Point(begin->GetX() - CELL, begin->GetY()));
 				break;
 			}
 			case Directions::RIGHT:
 			{
-				snake_.push_back(Location((begin->GetX() + CELL) % 800, begin->GetY()));
+				snake_.push_back(Point((begin->GetX() + CELL) % 800, begin->GetY()));
 				break;
 			}
 		}
@@ -69,25 +69,25 @@ public:
 	void Draw(CDC* dc)
 	{
 		COLORREF col = RGB(51, 204, 51);
+		CSize s(CELL, CELL);
 
 		for(const auto& i : snake_)
 		{
 			CPoint p(i.GetX(), i.GetY());
-			CSize s(CELL, CELL);
 			CRect rect(p, s);
 			dc->FillRect(&rect, &CBrush(col));
 		}
 	}
 
-	__forceinline constexpr mUINT16 GetScore() const
+	__forceinline constexpr tUINT16 GetScore() const
 	{
 		return score_;
 	}
 
 private:
-	deque<Location> snake_;
+	deque<Point> snake_;
 	Directions lastDirection_;
-	mUINT16 score_;
+	tUINT16 score_;
 
 	constexpr bool WrongDirection_(const Directions& d)
 	{
@@ -107,9 +107,10 @@ private:
 		}
 		return false;
 	}
+
 	void CheckSnake_(IModeDispatcher* dispatcher)
 	{
-		for (mUINT64 i = 0; i < snake_.size() - 1; i++)
+		for (tUINT64 i = 0; i < snake_.size() - 1; i++)
 		{
 			if (snake_[i] == snake_.back())
 			{

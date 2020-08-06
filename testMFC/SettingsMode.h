@@ -81,11 +81,11 @@ public:
 		}
 	}
 
-	__forceinline mINT8 GetSpeed()
+	__forceinline tUINT8 GetSpeed()
 	{
 		return speed_;
 	}
 
 private:
-	mUINT8 speed_ = 0;
+	tUINT8 speed_ = 0;
 };

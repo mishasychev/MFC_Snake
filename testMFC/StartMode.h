@@ -41,7 +41,7 @@ public:
 				else if (ans == 1)
 					dispatcher->SetMode(Modes::SETTINGS);
 				else
-					exit(0);
+					dispatcher->GetDialog()->EndDialog(IDCANCEL);
 				return;
 			}
 		}
@@ -50,7 +50,7 @@ public:
 	void Draw(IModeDispatcher* dispatcher, CDC* dc) override
 	{
 		COLORREF color;
-		int cell;
+		tINT32 cell;
 
 		//DRAW commands
 		vector <vector<bool>> playText =
@@ -148,5 +148,5 @@ public:
 		}
 	}
 private:
-	mUINT8 ans = 0;
+	tUINT8 ans = 0;
 };

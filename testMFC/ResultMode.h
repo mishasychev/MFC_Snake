@@ -10,7 +10,7 @@ using namespace std;
 class ResultMode : public Mode
 {
 public:
-	mUINT16 score = 0;
+	tUINT16 score = 0;
 
 	void OnKeyDown(IModeDispatcher* dispatcher, const UINT& nChar) override
 	{
@@ -43,7 +43,7 @@ public:
 				else if (ans == 1)
 					dispatcher->SetMode(Modes::SETTINGS);
 				else
-					exit(0);
+					dispatcher->GetDialog()->EndDialog(IDCANCEL);
 				return;
 			}
 		}
@@ -54,7 +54,7 @@ public:
 	{
 		COLORREF color;
 
-		mUINT16 score = this->score;
+		tUINT16 score = this->score;
 
 		//TEXT:score
 		vector<vector<bool>> scoreText =
@@ -177,7 +177,7 @@ public:
 			{0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0}
 		};
 
-		vector<mUINT16> scoreV;
+		vector<tUINT16> scoreV;
 		while (score >= 10)
 		{
 			scoreV.push_back(score % 10);
@@ -222,5 +222,5 @@ public:
 		}
 	}
 private:
-	mUINT8 ans = 0;
+	tUINT8 ans = 0;
 };

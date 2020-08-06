@@ -32,7 +32,7 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg_->SetTimer(2, 100 - static_cast<mUINT32>(settingsMode.GetSpeed()) * 7, 0);
+				dlg_->SetTimer(2, 100 - static_cast<tUINT32>(settingsMode.GetSpeed()) * 7, 0);
 				gameMode.Create();
 				currentMode = &gameMode;
 				return;
@@ -48,7 +48,7 @@ public:
 		}
 	}
 
-	const Modes GetMode() const override
+	const Modes& GetMode() const override
 	{
 		if (currentMode == &startMode)
 		{
@@ -67,6 +67,12 @@ public:
 			return Modes::RESULT;
 		}
 	}
+
+	__forceinline CtestMFCDlg* GetDialog() const override
+	{
+		return dlg_;
+	}
+
 private:
 	StartMode startMode;
 	SettingsMode settingsMode;

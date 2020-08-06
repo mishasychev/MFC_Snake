@@ -13,60 +13,74 @@ public:
 		{
 			case 87:
 			{
-				direction = Directions::UP;
+				direction_ = Directions::UP;
 				return;
 			}
 			case 83:
 			{
-				direction = Directions::DOWN;
+				direction_ = Directions::DOWN;
 				return;
 			}
 			case 65:
 			{
-				direction = Directions::LEFT;
+				direction_ = Directions::LEFT;
 				return;
 			}
 			case 68:
 			{
-				direction = Directions::RIGHT;
+				direction_ = Directions::RIGHT;
 				return;
 			}
 		}
 	}
 
-	void Draw(IModeDispatcher* dispatcher, CDC* dc) override
+	__inline void Draw(IModeDispatcher* dispatcher, CDC* dc) override
 	{
 		snake_->Draw(dc);
 		apple_->Draw(dc);
-		snake_->Movement(dispatcher, direction, apple_);
+		snake_->Movement(dispatcher, direction_, apple_);
 	}
 	__inline void Create()
 	{
 		apple_ = new Apple;
 		snake_ = new Snake;
 
-		direction = Directions::UP;
+		direction_ = Directions::UP;
 	}
 
-	__forceinline void Clean()
+	__inline void Clean()
 	{
 		delete apple_;
+		apple_ = nullptr;
 		delete snake_;
+		snake_ = nullptr;
 	}
 
-	__forceinline Apple* GetApple()
+	__forceinline constexpr Apple* GetApple()
 	{
 		return apple_;
 	}
 
-	__forceinline Snake* GetSnake()
+	__forceinline constexpr Snake* GetSnake()
 	{
 		return snake_;
 	}
 
-private:
-	Directions direction = Directions::UP;
+	~GameMode()
+	{
+		if (apple_ != nullptr)
+		{
+			delete apple_;
+		}
+		if (snake_ != nullptr)
+		{
+			delete snake_;
+		}
+	}
 
-	Snake* snake_;
-	Apple* apple_;
+private:
+	Directions direction_ = Directions::UP;
+
+	Snake* snake_ = nullptr;
+	Apple* apple_ = nullptr;
 };

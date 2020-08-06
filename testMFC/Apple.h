@@ -9,30 +9,30 @@ class Apple
 {
 public:
 	Apple()
-		: location_(0, 0)
+		: point_(0, 0)
 	{
-		srand(static_cast<mUINT32>(time(nullptr)));
+		srand(static_cast<tUINT32>(time(nullptr)));
 		NewLocation();
 	}
 
 	__inline void NewLocation()
 	{
-		location_.SetX((rand() % 40) * CELL);
-		location_.SetY((rand() % 25) * CELL);
+		point_.SetX((rand() % 40) * CELL);
+		point_.SetY((rand() % 25) * CELL);
 	}
 
 	__inline void Draw(CDC* dc)
 	{
-		CRect cellRect(CPoint(location_.GetX(), location_.GetY()), CSize(CELL, CELL));
+		CRect cellRect(CPoint(point_.GetX(), point_.GetY()), CSize(CELL, CELL));
 		COLORREF col = RGB(255, 51, 0);
 		dc->FillRect(&cellRect, &CBrush(col));
 	}
 
-	__forceinline const Location GetLocation() const
+	__forceinline const Point& GetLocation() const
 	{
-		return location_;
+		return point_;
 	}
 
 private:
-	Location location_;
+	Point point_;
 };

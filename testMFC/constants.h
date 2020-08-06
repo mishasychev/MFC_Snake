@@ -1,58 +1,59 @@
 #pragma once
 
-typedef char mINT8;
-typedef short mINT16;
-typedef int mINT32;
-typedef long long mINT64;
+typedef char					tINT8;
+typedef short					tINT16;
+typedef int						tINT32;
+typedef long long				tINT64;
 
-typedef unsigned char mUINT8;
-typedef unsigned short mUINT16;
-typedef unsigned int mUINT32;
-typedef unsigned long long mUINT64;
+typedef unsigned char			tUINT8;
+typedef unsigned short			tUINT16;
+typedef unsigned int			tUINT32;
+typedef unsigned long long		tUINT64;
 
 
-constexpr mUINT8 CELL = 20;
+constexpr tUINT8 CELL = 20;
+
 
 enum class Modes {START, SETTINGS, GAME, RESULT};
 enum class Directions {UP, DOWN, LEFT, RIGHT};
 
 
 
-class Location
+class Point
 {
 public:
-	Location(const mINT16& newX, const mINT16& newY)
+	Point(const tINT16& newX, const tINT16& newY)
 		: x_(newX)
 		, y_(newY)
 	{
 	}
 
-	__forceinline void SetX(const mINT16& newX)
+	__forceinline void SetX(const tINT16& newX)
 	{
 		x_ = newX;
 	}
 
-	__forceinline void SetY(const mINT16& newY)
+	__forceinline void SetY(const tINT16& newY)
 	{
 		y_ = newY;
 	}
 
-	__forceinline constexpr const mINT16 GetX() const
+	__forceinline constexpr tINT16 GetX() const
 	{
 		return x_;
 	}
 
-	__forceinline constexpr const mINT16 GetY() const
+	__forceinline constexpr tINT16 GetY() const
 	{
 		return y_;
 	}
 
-	__inline constexpr const bool operator==(const Location& anotherOne) const
+	__inline constexpr bool operator==(const Point& anotherOne) const
 	{
-		return (x_ == anotherOne.GetX() && y_ == anotherOne.GetY() ? true : false);
+		return x_ == anotherOne.GetX() && y_ == anotherOne.GetY() ? true : false;
 	}
 
 private:
-	mINT16 x_;
-	mINT16 y_;
+	tINT16 x_;
+	tINT16 y_;
 };
