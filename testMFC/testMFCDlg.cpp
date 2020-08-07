@@ -8,8 +8,6 @@
 #include "testMFC.h"
 #include "testMFCDlg.h"
 #include "afxdialogex.h"
-#include "Apple.h"
-#include "Snake.h"
 #include "ModeDispatcher.h"
 #include "constants.h"
 
@@ -110,7 +108,7 @@ BOOL CtestMFCDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	dispatcher_ = make_unique<ModeDispatcher>(this);
 
-	SetTimer(1, 150, 0);
+	SetTimer(1, 15, 0);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -134,7 +132,7 @@ void CtestMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 
 
 
-__forceinline void CtestMFCDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+void CtestMFCDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	dispatcher_->currentMode->OnKeyDown(dispatcher_.get(), nChar);
 }
@@ -148,15 +146,12 @@ void CtestMFCDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 	lpMMI->ptMaxTrackSize.y = static_cast<LONG>(539);
 }
 
-__inline void CtestMFCDlg::OnTimer(UINT_PTR uTime)
+void CtestMFCDlg::OnTimer(UINT_PTR uTime)
 {
 	if ((uTime == 1 && dispatcher_->GetMode() != Modes::GAME) || (uTime == 2 && dispatcher_->GetMode() == Modes::GAME))
+	{
 		RedrawWindow();
-}
-
-__forceinline BOOL CtestMFCDlg::OnEraseBkgnd(CDC* pDC)
-{
-	return static_cast<BOOL>(true);
+	} 
 }
 
 void CtestMFCDlg::OnPaint()
@@ -212,12 +207,4 @@ void CtestMFCDlg::OnPaint()
 		dc_mem.DeleteDC();
 		bitmap.DeleteObject();
 	}
-}
-
-
-// The system calls this function to obtain the cursor to display while the user drags
-//  the minimized window.
-__forceinline HCURSOR CtestMFCDlg::OnQueryDragIcon()
-{
-	return static_cast<HCURSOR>(m_hIcon);
 }

@@ -2,6 +2,7 @@
 
 #include <memory>
 
+
 // CtestMFCDlg dialog
 class CtestMFCDlg : public CDialogEx
 {
@@ -25,12 +26,13 @@ protected:
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	__forceinline void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg
-	__inline void OnTimer(UINT_PTR uTime);
-	__forceinline BOOL OnEraseBkgnd(CDC* pDC);
+	void OnTimer(UINT_PTR uTime);
+	__forceinline BOOL OnEraseBkgnd(CDC* pDC) { return TRUE; }
 	void OnPaint();
-	afx_msg __forceinline HCURSOR OnQueryDragIcon();
+	afx_msg 
+	__forceinline HCURSOR OnQueryDragIcon() { return m_hIcon; }
 	DECLARE_MESSAGE_MAP()
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ModeDispatcher.h"
+#include "Mode.h"
 #include "Snake.h"
 #include "Apple.h"
 
@@ -34,53 +34,41 @@ public:
 		}
 	}
 
-	__inline void Draw(IModeDispatcher* dispatcher, CDC* dc) override
+	void Draw(IModeDispatcher* dispatcher, CDC* dc) override
 	{
 		snake_->Draw(dc);
 		apple_->Draw(dc);
 		snake_->Movement(dispatcher, direction_, apple_);
 	}
-	__inline void Create()
+
+	void Create(CtestMFCDlg* dlg, tINT32 snakeSpeed)
 	{
 		apple_ = new Apple;
 		snake_ = new Snake;
 
 		direction_ = Directions::UP;
-	}
 
-	__inline void Clean()
+		dlg->SetTimer(2, 100 - snakeSpeed, nullptr);
+	}
+	
+	/*@returns Count of eaten apples*/
+	tUINT16 Clean(CtestMFCDlg* dlg)
 	{
+		dlg->KillTimer(2);
+
 		delete apple_;
-		apple_ = nullptr;
 		delete snake_;
-		snake_ = nullptr;
+
+		return snake_->GetScore();
 	}
 
-	__forceinline constexpr Apple* GetApple()
-	{
-		return apple_;
-	}
+	__forceinline constexpr Apple* GetApple() { return apple_; }
 
-	__forceinline constexpr Snake* GetSnake()
-	{
-		return snake_;
-	}
-
-	~GameMode()
-	{
-		if (apple_ != nullptr)
-		{
-			delete apple_;
-		}
-		if (snake_ != nullptr)
-		{
-			delete snake_;
-		}
-	}
+	__forceinline constexpr Snake* GetSnake() { return snake_; }
 
 private:
 	Directions direction_ = Directions::UP;
 
-	Snake* snake_ = nullptr;
-	Apple* apple_ = nullptr;
+	Snake* snake_;
+	Apple* apple_;
 };

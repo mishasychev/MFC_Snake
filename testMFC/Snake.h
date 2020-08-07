@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+#include "Apple.h"
 #include "IModeDispatcher.h"
 
 using namespace std;
@@ -61,7 +62,10 @@ public:
 		{
 			snake_.pop_front();
 		}
-		CheckSnake_(dispatcher);
+		if (CheckSnake_())
+		{
+			dispatcher->SetMode(Modes::RESULT);
+		}
 
 		lastDirection_ = d;
 	}
@@ -79,10 +83,7 @@ public:
 		}
 	}
 
-	__forceinline constexpr tUINT16 GetScore() const
-	{
-		return score_;
-	}
+	__forceinline constexpr tUINT16 GetScore() const { return score_; }
 
 private:
 	deque<Point> snake_;
@@ -108,15 +109,15 @@ private:
 		return false;
 	}
 
-	void CheckSnake_(IModeDispatcher* dispatcher)
+	bool CheckSnake_()
 	{
 		for (tUINT64 i = 0; i < snake_.size() - 1; i++)
 		{
 			if (snake_[i] == snake_.back())
 			{
-				dispatcher->SetMode(Modes::RESULT);
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 };

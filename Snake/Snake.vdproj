@@ -21,7 +21,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8176958741144858B7B094620D4CF1B9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DE6B2D4148534BBFAA837C0B85AC1526"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E8260288C89E4A2CB386B987BDB03D53"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -112,10 +124,50 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8176958741144858B7B094620D4CF1B9"
+            {
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\CoreCon\\Binaries\\Phone Tools\\Debugger\\target\\x64\\msvcp140.dll"
+            "TargetName" = "8:msvcp140.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE6B2D4148534BBFAA837C0B85AC1526"
             {
             "SourcePath" = "8:..\\testMFC\\res\\testMFC.ico"
             "TargetName" = "8:testMFC.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E8260288C89E4A2CB386B987BDB03D53"
+            {
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\CoreCon\\Binaries\\Phone Tools\\Debugger\\target\\x64\\vcruntime140.dll"
+            "TargetName" = "8:vcruntime140.dll"
             "Tag" = "8:"
             "Folder" = "8:_5290E347F9874B5C82D6CF504BEA7918"
             "Condition" = "8:"
@@ -200,7 +252,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Snake"
         "ProductCode" = "8:{64FD7AB1-138E-496A-AF3A-AD72E7C3EBB9}"
-        "PackageCode" = "8:{84AD5813-0978-46DA-BA72-A0C4290FF063}"
+        "PackageCode" = "8:{B795723F-15BC-4544-88BD-B6A68C8C5602}"
         "UpgradeCode" = "8:{31D81420-AED1-4065-8544-5A7D2F2298AB}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

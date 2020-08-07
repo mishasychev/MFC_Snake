@@ -22,37 +22,25 @@ enum class Directions {UP, DOWN, LEFT, RIGHT};
 class Point
 {
 public:
-	Point(const tINT16& newX, const tINT16& newY)
-		: x_(newX)
-		, y_(newY)
+	Point(const tINT16& X, const tINT16& Y)
+		: x_(X)
+		, y_(Y)
 	{
 	}
 
-	__forceinline void SetX(const tINT16& newX)
-	{
-		x_ = newX;
-	}
+	__forceinline void SetX(const tINT16& newX) { x_ = newX; }
 
-	__forceinline void SetY(const tINT16& newY)
-	{
-		y_ = newY;
-	}
+	__forceinline void SetY(const tINT16& newY) { y_ = newY; }
 
-	__forceinline constexpr tINT16 GetX() const
-	{
-		return x_;
-	}
+	__forceinline constexpr tINT16 GetX() const { return x_; }
 
-	__forceinline constexpr tINT16 GetY() const
-	{
-		return y_;
-	}
+	__forceinline constexpr tINT16 GetY() const { return y_; }
 
 	__inline constexpr bool operator==(const Point& anotherOne) const
 	{
 		return x_ == anotherOne.GetX() && y_ == anotherOne.GetY() ? true : false;
 	}
-
+ 
 private:
 	tINT16 x_;
 	tINT16 y_;

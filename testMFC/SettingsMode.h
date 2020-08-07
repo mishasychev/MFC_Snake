@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ModeDispatcher.h"
+#include "Mode.h"
 
 #include <vector>
 

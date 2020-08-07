@@ -32,23 +32,20 @@ public:
 			}
 			case Modes::GAME:
 			{
-				dlg_->SetTimer(2, 100 - static_cast<tUINT32>(settingsMode.GetSpeed()) * 7, 0);
-				gameMode.Create();
+				gameMode.Create(dlg_, static_cast<tUINT32>(settingsMode.GetSpeed()) * 10);
 				currentMode = &gameMode;
 				return;
 			}
 			case Modes::RESULT:
 			{
-				dlg_->KillTimer(2);
-				resultMode.score = gameMode.GetSnake()->GetScore();
-				gameMode.Clean();
+				resultMode.score = gameMode.Clean(dlg_);
 				currentMode = &resultMode;
 				return;
 			}
 		}
 	}
 
-	const Modes& GetMode() const override
+	const Modes GetMode() const override
 	{
 		if (currentMode == &startMode)
 		{
@@ -68,7 +65,7 @@ public:
 		}
 	}
 
-	__forceinline CtestMFCDlg* GetDialog() const override
+	CtestMFCDlg* GetDialog() const override
 	{
 		return dlg_;
 	}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Mode.h"
-#include "ModeDispatcher.h"
 
 #include <vector>
 
@@ -16,32 +15,34 @@ public:
 		{
 			case 87:
 			{
-				if (ans == 0)
-				{
-					ans = 2;
-					return;
-				}
-				ans--;
+				ans == 0 ? ans = 2 : ans--;
 				return;
 			}
 			case 83:
 			{
-				if (ans == 2)
-				{
-					ans = 0;
-					return;
-				}
-				ans++;
+				ans == 2 ? ans = 0 : ans++;
 				return;
 			}
 			case 32:
 			{
-				if (ans == 0)
-					dispatcher->SetMode(Modes::GAME);
-				else if (ans == 1)
-					dispatcher->SetMode(Modes::SETTINGS);
-				else
-					dispatcher->GetDialog()->EndDialog(IDCANCEL);
+				switch (ans)
+				{
+					case 0:
+					{
+						dispatcher->SetMode(Modes::GAME);
+						return;
+					}
+					case 1:
+					{
+						dispatcher->SetMode(Modes::SETTINGS);
+						return;
+					}
+					case 2:
+					{
+						dispatcher->GetDialog()->EndDialog(IDCANCEL);
+						return;
+					}
+				}
 				return;
 			}
 		}
