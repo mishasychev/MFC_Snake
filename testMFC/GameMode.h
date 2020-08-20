@@ -62,9 +62,9 @@ public:
 		return snake_->GetScore();
 	}
 
-	__forceinline constexpr Apple* GetApple() { return apple_; }
+	__forceinline constexpr Apple* GetApple() const { return apple_; }
 
-	__forceinline constexpr Snake* GetSnake() { return snake_; }
+	__forceinline constexpr Snake* GetSnake() const { return snake_; }
 
 private:
 	Directions direction_ = Directions::UP;

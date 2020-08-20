@@ -28,6 +28,8 @@ public:
 	{
 	}
 
+	__forceinline Point Clone() const { return Point(x_, y_); }
+
 	__forceinline void SetX(const tINT16& newX) { x_ = newX; }
 
 	__forceinline void SetY(const tINT16& newY) { y_ = newY; }

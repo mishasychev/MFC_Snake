@@ -11,7 +11,7 @@ class ModeDispatcher : public IModeDispatcher
 public:
 	Mode* currentMode = &startMode;
 
-	ModeDispatcher(CtestMFCDlg* newDlg)
+	__forceinline ModeDispatcher(CtestMFCDlg* newDlg)
 		: dlg_(newDlg)
 	{
 	}

@@ -9,16 +9,14 @@ class Apple
 {
 public:
 	Apple()
-		: point_(0, 0)
 	{
 		srand(static_cast<tUINT32>(time(nullptr)));
 		NewLocation();
 	}
 
-	void NewLocation()
+	__inline void NewLocation()
 	{
-		point_.SetX((rand() % 40) * CELL);
-		point_.SetY((rand() % 25) * CELL);
+		point_ = Point((rand() % 40) * CELL, (rand() % 25) * CELL);
 	}
 
 	void Draw(CDC* dc)
@@ -31,5 +29,5 @@ public:
 	__forceinline const Point& GetLocation() const { return point_; }
 
 private:
-	Point point_;
+	Point point_ = { 0, 0 };
 };
