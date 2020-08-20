@@ -11,11 +11,6 @@ class ModeDispatcher : public IModeDispatcher
 public:
 	Mode* currentMode = &startMode;
 
-	__forceinline ModeDispatcher(CtestMFCDlg* newDlg)
-		: dlg_(newDlg)
-	{
-	}
-
 	void SetMode(const Modes& newMode) override
 	{
 		switch (newMode)
@@ -32,13 +27,13 @@ public:
 			}
 			case Modes::GAME:
 			{
-				gameMode.Create(dlg_, static_cast<tUINT32>(settingsMode.GetSpeed()) * 10);
+				gameMode.Create(DIALOG, static_cast<tUINT32>(settingsMode.GetSpeed()) * 10);
 				currentMode = &gameMode;
 				return;
 			}
 			case Modes::RESULT:
 			{
-				resultMode.score = gameMode.Clean(dlg_);
+				resultMode.score = gameMode.Clean(DIALOG);
 				currentMode = &resultMode;
 				return;
 			}
@@ -65,16 +60,9 @@ public:
 		}
 	}
 
-	CtestMFCDlg* GetDialog() const override
-	{
-		return dlg_;
-	}
-
 private:
 	StartMode startMode;
 	SettingsMode settingsMode;
 	GameMode gameMode;
 	ResultMode resultMode;
-
-	CtestMFCDlg* dlg_;
 };

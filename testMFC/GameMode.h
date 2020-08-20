@@ -41,7 +41,7 @@ public:
 		snake_->Movement(dispatcher, direction_, apple_);
 	}
 
-	void Create(CtestMFCDlg* dlg, tINT32 snakeSpeed)
+	void Create(CDialog* dlg, tINT32 snakeSpeed)
 	{
 		apple_ = new Apple;
 		snake_ = new Snake;
@@ -52,7 +52,7 @@ public:
 	}
 	
 	/*@returns Count of eaten apples*/
-	tUINT16 Clean(CtestMFCDlg* dlg)
+	tUINT16 Clean(CDialog* dlg)
 	{
 		dlg->KillTimer(2);
 
@@ -69,6 +69,6 @@ public:
 private:
 	Directions direction_ = Directions::UP;
 
-	Snake* snake_;
-	Apple* apple_;
+	Snake* snake_ = nullptr;
+	Apple* apple_ = nullptr;
 };

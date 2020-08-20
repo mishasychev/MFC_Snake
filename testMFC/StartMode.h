@@ -39,7 +39,7 @@ public:
 					}
 					case 2:
 					{
-						dispatcher->GetDialog()->EndDialog(IDCANCEL);
+						DIALOG->EndDialog(IDCANCEL);
 						return;
 					}
 				}

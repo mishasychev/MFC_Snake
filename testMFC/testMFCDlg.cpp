@@ -8,16 +8,12 @@
 #include "testMFC.h"
 #include "testMFCDlg.h"
 #include "afxdialogex.h"
-#include "ModeDispatcher.h"
-#include "constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 // CAboutDlg dialog used for App About
-
-std::unique_ptr<ModeDispatcher> dispatcher_;
 
 class CAboutDlg : public CDialogEx
 {
@@ -54,6 +50,8 @@ CtestMFCDlg::CtestMFCDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_TESTMFC_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	dispatcher_ = make_unique<ModeDispatcher>();
+	DIALOG = this;
 }
 
 void CtestMFCDlg::DoDataExchange(CDataExchange* pDX)
@@ -103,8 +101,6 @@ BOOL CtestMFCDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	dispatcher_ = make_unique<ModeDispatcher>(this);
-
 	SetTimer(1, 15, 0);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control

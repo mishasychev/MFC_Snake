@@ -29,5 +29,5 @@ public:
 	__forceinline const Point& GetLocation() const { return point_; }
 
 private:
-	Point point_ = { 0, 0 };
+	Point point_{ 0, 0 };
 };

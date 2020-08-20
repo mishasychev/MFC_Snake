@@ -13,6 +13,13 @@ typedef unsigned long long		tUINT64;
 
 constexpr tUINT8 CELL = 20;
 
+namespace
+{
+	CDialog* DIALOG = nullptr;
+}
+
+
+
 
 enum class Modes {START, SETTINGS, GAME, RESULT};
 enum class Directions {UP, DOWN, LEFT, RIGHT};

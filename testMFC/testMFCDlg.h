@@ -1,7 +1,8 @@
 #pragma once
 
 #include <memory>
-
+#include "ModeDispatcher.h"
+#include "constants.h"
 
 // CtestMFCDlg dialog
 class CtestMFCDlg : public CDialogEx
@@ -30,4 +31,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg __forceinline constexpr HCURSOR OnQueryDragIcon() { return m_hIcon; }
 	DECLARE_MESSAGE_MAP()
+
+private:
+	std::unique_ptr<ModeDispatcher> dispatcher_;
 };
