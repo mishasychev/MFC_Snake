@@ -95,7 +95,7 @@ private:
 		return d == Directions::UP && lastDirection_ == Directions::DOWN
 			   || d == Directions::DOWN && lastDirection_ == Directions::UP
 			   || d == Directions::LEFT && lastDirection_ == Directions::RIGHT
-			   || d == Directions::RIGHT && lastDirection_ == Directions::LEFT ? true : false;
+			   || d == Directions::RIGHT && lastDirection_ == Directions::LEFT;
 	}
 
 	constexpr bool CheckApple_(Apple* apple)
